@@ -2,6 +2,7 @@ let filterColor=document.querySelectorAll(".colour");
 let main_container=document.querySelector(".main_container");
 let addTask=document.querySelector(".fa-plus");
 let body=document.body;
+let taskColor;
 
 
 for(let i=0;i<filterColor.length;i++){
@@ -54,8 +55,9 @@ function createModal(){
             </div>
         </div>`
         body.appendChild(modal_container);
-        let taskColor=document.querySelectorAll(".modal_filter_container>.filter>.colour");
+        taskColor=document.querySelectorAll(".modal_filter_container>.filter>.colour");
         selectPriority(taskColor);
+        // console.log(taskColor);
     }
 };
 
@@ -67,6 +69,7 @@ function selectPriority(taskColor){
             ele.classList.remove("border");
             taskColor[i].classList.add("border");
             let style=getComputedStyle(taskColor[i]);
+            // console.log(style);
             color=style.backgroundColor;
         });
     }
@@ -98,5 +101,33 @@ function createTask(task,color){
     main_container.appendChild(div);
     let ele=document.querySelectorAll(".task_color");
     ele[ele.length-1].style.backgroundColor=color;
+
+    // let taskContainer=div.className; -> task_container
+    // console.log(taskContainer);
+    let taskFilter=div.querySelector(".task_color");
+    taskFilter.addEventListener("click",changeColorPriorityOfTask);
+
+}
+
+function changeColorPriorityOfTask(e){
+    
+    // console.log(e.currentTarget); 
+    // -> <div class="task_container"></div>
+    // console.log(e.target); 
+    // -> <div class="task_color"></div>
+
+    // let taskFilter=e.target;
+    // // let style=getComputedStyle(taskColor);
+    // console.log(taskColor);
+    // let taskContainer=taskFilter.parentNode;
+    let style=getComputedStyle(taskColor[0]);
+            console.log(style);
+            color=style.backgroundColor;
+            console.log(color);
+    
+
+
+
+
 
 }
